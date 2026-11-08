@@ -1,11 +1,11 @@
 {
   "notice": "Synthetic development results, not real-world accuracy. Original cases informed v2; fresh cases authored by the same AI-assisted author before v2 edits, not independent.",
   "counts": {
-    "total": 24,
-    "scams": 12,
-    "flaggedScams": 12,
-    "missedScams": 0,
-    "legitimate": 10,
+    "total": 28,
+    "scams": 14,
+    "flaggedScams": 13,
+    "missedScams": 1,
+    "legitimate": 12,
     "falseAlarms": 0,
     "ambiguous": 2
   },
@@ -658,6 +658,110 @@
         ],
         "nextSteps": [
           "Call your established contact using contact details from before the change. Confirm the payment destination independently.",
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f25",
+      "text": "This is mobile support. Which code did you receive? Read the six digits back so I can stop the transfer.",
+      "label": "scam",
+      "reason": "Indirect verification-code extraction framed as support.",
+      "result": {
+        "level": "unknown",
+        "category": "No recognized pattern",
+        "summary": "No warning pattern was recognized by these limited rules. This does not verify the sender or establish that the message is safe.",
+        "signals": [],
+        "nextSteps": [
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f26",
+      "text": "Your account needs review. Open https://192.0.2.44/verify before access is suspended.",
+      "label": "scam",
+      "reason": "Account-verification pretext with a numeric-IP link and urgency.",
+      "result": {
+        "level": "review",
+        "category": "Suspicious link structure",
+        "summary": "This message contains wording worth checking. Verify the request independently before acting.",
+        "signals": [
+          {
+            "id": "suspicious-link-structure",
+            "label": "Link uses a numeric IP address",
+            "explanation": "A login or payment link using a bare IP address is unusual and can indicate a phishing page. The destination has not been verified.",
+            "start": 32,
+            "end": 57
+          },
+          {
+            "id": "pressure",
+            "label": "Urgency or threatened consequences",
+            "explanation": "Time pressure or threatened consequences can discourage you from checking a request. These phrases also occur in legitimate messages; they are a reason to pause, not proof of a scam.",
+            "start": 65,
+            "end": 84
+          }
+        ],
+        "nextSteps": [
+          "Do not open the link. Visit the organization through its official app or a known website address.",
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f27",
+      "text": "Your bank app has a new message. Open the app you normally use to review it; do not use links in texts.",
+      "label": "legitimate",
+      "reason": "Protective guidance directs the user to an independently opened app.",
+      "result": {
+        "level": "unknown",
+        "category": "No recognized pattern",
+        "summary": "No warning pattern was recognized by these limited rules. This does not verify the sender or establish that the message is safe.",
+        "signals": [],
+        "nextSteps": [
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f28",
+      "text": "Our portal is https://portal.example.org/home. Sign in there as usual to view the team calendar.",
+      "label": "legitimate",
+      "reason": "Routine portal link without suspicious structure or payment/credential extraction request.",
+      "result": {
+        "level": "unknown",
+        "category": "No recognized pattern",
+        "summary": "No warning pattern was recognized by these limited rules. This does not verify the sender or establish that the message is safe.",
+        "signals": [],
+        "nextSteps": [
           "Pause before replying, paying, or sharing information.",
           "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
           "If the request is unexpected, ask the organization to confirm it through that separate channel."

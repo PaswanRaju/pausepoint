@@ -16,7 +16,7 @@ A message can contain no recognized warning signs and still be fraudulent. The s
 
 ## Coverage
 
-The cases include three variations of bank safe-account transfer scams, three requests for authentication codes, two delivery-fee scams, gift-card and cryptocurrency payments, unsolicited remote access, an advance-fee prize, obfuscated spelling, Spanish text, indirect payment diversion, and instructions intended to manipulate an AI analyzer. Benign cases cover negation, quoted scam phrases, code notifications, a meeting link, appointments, delivery, and payroll. Ambiguous cases probe the limits of content-only assessment.
+The cases include three variations of bank safe-account transfer scams, three requests for authentication codes, two delivery-fee scams, gift-card and cryptocurrency payments, unsolicited remote access, an advance-fee prize, obfuscated spelling, Spanish text, indirect payment diversion, account-verification link wording, and instructions intended to manipulate an AI analyzer. Benign cases cover negation, quoted scam phrases, code notifications, a meeting link, appointments, delivery, and payroll. Ambiguous cases probe the limits of content-only assessment.
 
 ## Reporting results
 
@@ -36,4 +36,4 @@ State denominators. If reporting precision or recall, calculate them from explic
 
 ## Results
 
-V1 baseline is preserved in evaluation-baseline-v1.json and tests/baseline-engine-v1.js. V2 original results: 16/16 scams flagged, 0/10 legitimate cases flagged, 4 ambiguous unscored. The original set now informs implementation and is a regression set. The additional 24 cases were authored before v2 edits by the same AI-assisted author: 12/12 scams flagged, 0/10 legitimate flagged, 2 ambiguous unscored. It is prospective development coverage, not independent validation. All high/review outputs count as flagged; payment-detail changes remain review-level only. See evaluation-results.json and evaluation-fresh-v2.json.
+V1 baseline is preserved in evaluation-baseline-v1.json and tests/baseline-engine-v1.js. V2 original results: 16/16 scams flagged, 0/10 legitimate cases flagged, 4 ambiguous unscored. The original set now informs implementation and is a regression set. The additional 24 cases were authored before v2 edits by the same AI-assisted author: 12/12 scams flagged, 0/10 legitimate flagged, 2 ambiguous unscored. It is prospective development coverage, not independent validation. The regression suite now has 30 automated behavior tests, including account-verification link cases. All high/review outputs count as flagged; payment-detail changes remain review-level only. See evaluation-results.json and evaluation-fresh-v2.json.

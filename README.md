@@ -6,7 +6,7 @@
 - Browser-local, explainable message analysis with highlighted evidence; never returns a safe verdict or invented probability.
 - Guided independent verification for banks, deliveries, accounts, and unfamiliar contacts.
 - Six recovery situations with official consumer resources and downloadable action plans that exclude original messages.
-- Interactive Test Lab showing all 30 independent synthetic cases, with per-case outcomes.
+- Interactive Test Lab showing the 30-case regression set and 24-case additional synthetic development set, with per-case outcomes.
 - Responsive, keyboard-accessible interface; no dependencies, API keys, account registration, message storage, or external AI calls.
 
 ## Run locally
@@ -37,8 +37,12 @@ Message text stays in runtime memory in the browser and is rendered as text, not
 4. Try Routine reminder: no strong cues never means safe.
 5. Run both Test Lab sets, compare the v1 baseline, and explain that small synthetic results do not guarantee real-world detection.
 
+Keyboard: use Tab to move between controls, Enter/Space to activate buttons, and Command/Ctrl+Enter in the message editor to analyze. Results and selected recovery plans receive focus; Escape closes the privacy dialog. Motion follows the device's reduced-motion preference.
+
+The local UI pass is documented in [docs/UI-PASS.md](docs/UI-PASS.md), including validation limits and a short presentation script. Local changes do not update GitHub or the private Sites deployment.
+
 ## Architecture
-`dist/app.js`: UI and verification workflow. `dist/engine.js`: pure rule engine. `dist/recovery.js`: fixed sourced guidance. `tests/`: behavior tests and independent dataset. `server.mjs`: local static preview only.
+`dist/app.js`: UI and verification workflow. `dist/engine.js`: pure rule engine. `dist/recovery.js`: fixed sourced guidance. `tests/`: behavior tests and synthetic development datasets. `server.mjs`: local static preview only.
 
 ## AI assistance
 Codex assisted with planning, writing and implementing the interface, detector, recovery content, tests, documentation, and synthetic evaluation cases. The evaluation cases were authored separately from the detector implementation using AI assistance; this is not a human-labeled external benchmark. The participant should review and understand the code before presenting. No generative model runs in the product.

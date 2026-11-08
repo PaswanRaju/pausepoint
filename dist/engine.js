@@ -25,7 +25,7 @@ const RULES = [
   },
   {
     id: 'secret-request', label: 'Request for a password or security code', category: 'Credential or verification-code theft pattern', severity: 'high',
-    pattern: /\b(?:share|send|tell|give|provide|forward|screenshot|photograph|reply\s+with|respond\s+with|confirm|enter|submit)\b[^.!?\n]{0,60}\b(?:password|passcode|PIN|OTP|one[- ]time(?:\s+(?:verification|security))?\s+(?:code|password)|(?:verification|security|authentication|login|six[- ]digit|6[- ]digit)\s+code|recovery\s+(?:code|phrase)|seed\s+phrase)\b/gi,
+    pattern: /\b(?:share|send|tell|give|provide|forward|screenshot|photograph|reply\s+with|respond\s+with|confirm|enter|submit|read\s+(?:back|out)|repeat|dictate)\b[^.!?\n]{0,60}\b(?:password|passcode|PIN|OTP|one[- ]time(?:\s+(?:verification|security))?\s+(?:code|password)|(?:verification|security|authentication|login|six[- ]digit(?:s)?|6[- ]digit(?:s)?)\s+code|(?:six[- ]digit|6[- ]digit|six|6)\s+digits?|recovery\s+(?:code|phrase)|seed\s+phrase)\b|\b(?:what|which)\b[^.\n]{0,35}\b(?:code|number|digits?)\b[^.\n]{0,35}\b(?:received|arrived|sent|texted)\b|\b(?:read|repeat)\s+(?:it|that|them)\s+back\b/gi,
     explanation: 'This wording asks for an account secret. Someone who obtains a security code or password may be able to access your account. Context matters; an expected login you initiated is different from an unsolicited request.',
     steps: ['Do not send passwords, one-time codes, or recovery phrases to the person who contacted you.', 'If you initiated a login, return to the official app or site independently to check what it requires.']
   },
@@ -34,6 +34,12 @@ const RULES = [
     pattern: /\b(?:install|download|run|open|enable|grant|allow)\b[^.!?\n]{0,65}\b(?:AnyDesk|TeamViewer|RustDesk|remote\s+(?:access|control|desktop)|screen[- ]sharing|QuickSupport)\b/gi,
     explanation: 'Remote-access tools can give someone control of your device. An unexpected support request involving these tools deserves independent verification.',
     steps: ['Do not grant remote control to an unverified caller or message sender.', 'Contact the company through an independently verified support channel.']
+  },
+  {
+    id: 'account-link', label: 'Account verification link request', category: 'Bank or account impersonation pattern', severity: 'review',
+    pattern: /\b(?:click|tap|open|follow|use)\b[^.!?\n]{0,55}\b(?:link|url|button)\b[^.!?\n]{0,70}\b(?:verify|confirm|unlock|restore|secure)\b[^.!?\n]{0,55}\b(?:account|identity|card|payment)\b|\b(?:verify|confirm|unlock|restore|secure)\b[^.!?\n]{0,70}\b(?:account|identity|card|payment)\b[^.!?\n]{0,55}\b(?:link|url|button)\b/gi,
+    explanation: 'A message that directs you to a supplied link to verify or unlock an account may be impersonating a bank or service. Open the official app or site independently instead.',
+    steps: ['Do not use the supplied link to sign in or provide information.', 'Open the organization’s official app or type its known website address yourself to check for alerts.']
   },
   {
     id: 'delivery-fee', label: 'Delivery or redelivery payment request', category: 'Delivery-fee scam pattern', severity: 'review',
@@ -55,7 +61,7 @@ const RULES = [
   },
   {
     id: 'pressure', label: 'Urgency or threatened consequences', category: 'Pressure to act', severity: 'review',
-    pattern: /\b(?:act\s+now|immediately|urgent(?:ly)?|within\s+\d+\s+(?:minutes?|hours?)|(?:account|access|service)\s+(?:(?:will|may)\s+be\s+|is\s+|has\s+been\s+)?(?:suspended|blocked|locked|closed|disabled)|(?:avoid|face|risk)\s+(?:arrest|suspension|closure|legal\s+action)|final\s+warning)\b/gi,
+    pattern: /\b(?:act\s+now|immediately|urgent(?:ly)?|within\s+\d+\s+(?:minutes?|hours?)|(?:account|access|service)\s+(?:(?:will|may)\s+be\s+|is\s+|has\s+been\s+)?(?:suspended|blocked|locked|closed|disabled)|(?:avoid|face|risk)\s+(?:arrest|suspension|closure|legal\s+action)|final\s+warning|last\s+chance|failure\s+to\s+act)\b/gi,
     explanation: 'Time pressure or threatened consequences can discourage you from checking a request. These phrases also occur in legitimate messages; they are a reason to pause, not proof of a scam.',
     steps: ['Take time to verify the request, even if the message says you must act immediately.']
   }
@@ -105,6 +111,16 @@ function educationalQuotation(text,start,end) {
  }
  return false;
 }
+function suspiciousUrlRule(rawUrl) {
+  const candidate = rawUrl.match(/^[a-z]+:\/\//i) ? rawUrl : `https://${rawUrl}`;
+  if (!URL.canParse(candidate)) return null;
+  const url = new URL(candidate);
+  const host = url.hostname.toLowerCase();
+  if (url.username || url.password) return {id:'suspicious-link-structure',label:'Link uses hidden username or password text',category:'Suspicious link structure',severity:'review',explanation:'This link contains text before the host that can disguise the real destination. Do not open it; use the organization’s official app or site independently.',steps:['Do not open this link or enter credentials into it. Open the official app or type the known website address yourself.']};
+  if (/^\d{1,3}(?:\.\d{1,3}){3}$/.test(host)) return {id:'suspicious-link-structure',label:'Link uses a numeric IP address',category:'Suspicious link structure',severity:'review',explanation:'A login or payment link using a bare IP address is unusual and can indicate a phishing page. The destination has not been verified.',steps:['Do not open the link. Visit the organization through its official app or a known website address.']};
+  if (host.startsWith('xn--') || host.includes('.xn--')) return {id:'suspicious-link-structure',label:'Link uses an encoded internationalized domain',category:'Suspicious link structure',severity:'review',explanation:'Encoded domain labels can make a look-alike address harder to recognize. The domain has not been verified.',steps:['Do not rely on the displayed link. Open the organization’s official app or type its known address yourself.']};
+ return null;
+}
 export function analyze(input) {
  const raw=typeof input==='string'?input:'';const text=raw.slice(0,MAX_MESSAGE_LENGTH);
  const {value,map}=normalizedView(text);const limitations=[...BASE_LIMITATIONS];
@@ -113,10 +129,15 @@ export function analyze(input) {
  for(const rule of RULES)for(const match of value.matchAll(new RegExp(rule.pattern.source,rule.pattern.flags))){
   const a=match.index,b=a+match[0].length;
   if(isNegated(value,a)||educationalQuotation(value,a,b))continue;
+  if(rule.id==='secret-request'&&/\b(?:read|repeat)\s+(?:it|that|them)\s+back\b/i.test(match[0])&&!/\b(?:code|digits?|OTP|passcode)\b/i.test(value))continue;
   if(rule.id==='changed-payment'&&!/\b(?:invoice|pay|payment|remit|transfer|bank|banking)\b/i.test(value))continue;
   matches.push({rule,start:map[a].start,end:map[b-1].end});
  }
  if(matches.some(m=>m.rule.id!=='pressure'))for(const match of text.matchAll(/\b(?:https?:\/\/|www\.)[^\s<>"']+/gi))matches.push({rule:{id:'message-link',label:'Link supplied by the sender',category:'Unverified link',severity:'context',explanation:'This link has not been opened or checked. Use an independently opened official app or site.',steps:[]},start:match.index,end:match.index+match[0].replace(/[.,;!?)]+$/,'').length});
+ for(const match of text.matchAll(/\b(?:https?:\/\/|www\.)[^\s<>"']+/gi)){
+  const url=match[0].replace(/[.,;!?)]+$/,''); const rule=suspiciousUrlRule(url);
+  if(rule)matches.push({rule,start:match.index,end:match.index+url.length});
+ }
  matches.sort((a,b)=>a.start-b.start||b.end-a.end);
  const rules=[...new Map(matches.map(m=>[m.rule.id,m.rule])).values()];const strong=rules.find(r=>r.severity==='high');const review=rules.filter(r=>r.severity==='review');
  const level=strong?'high':review.length?'review':'unknown';const main=strong||review.find(r=>r.id!=='pressure')||review[0];

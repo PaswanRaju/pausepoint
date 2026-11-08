@@ -23,4 +23,9 @@
 {"id":"f22","text":"Our article explains why a 'secure reserve account' demand is suspicious.","label":"legitimate","reason":"No transfer request."},
 {"id":"f23","text":"Can you send the reference number for our booking?","label":"ambiguous","reason":"Reference may not be an authentication secret."},
 {"id":"f24","text":"Your invoice contains updated bank information. Please confirm this directly with our usual contact before paying.","label":"ambiguous","reason":"Could be legitimate; independent verification remains reasonable."}
+,
+{"id":"f25","text":"This is mobile support. Which code did you receive? Read the six digits back so I can stop the transfer.","label":"scam","reason":"Indirect verification-code extraction framed as support."},
+{"id":"f26","text":"Your account needs review. Open https://192.0.2.44/verify before access is suspended.","label":"scam","reason":"Account-verification pretext with a numeric-IP link and urgency."},
+{"id":"f27","text":"Your bank app has a new message. Open the app you normally use to review it; do not use links in texts.","label":"legitimate","reason":"Protective guidance directs the user to an independently opened app."},
+{"id":"f28","text":"Our portal is https://portal.example.org/home. Sign in there as usual to view the team calendar.","label":"legitimate","reason":"Routine portal link without suspicious structure or payment/credential extraction request."}
 ]

@@ -8,8 +8,10 @@ const {analyze} = await import(`data:text/javascript;base64,${Buffer.from(code).
 const scenarios = [
  ['Move your money to a safe account now.', 'high', 'safe-account'],
  ['Please send me your verification code.', 'high', 'secret-request'],
+ ['Read back the six digits that just arrived by text.', 'high', 'secret-request'],
  ['Reply with your OTP to approve the refund.', 'high', 'secret-request'],
  ['Download AnyDesk so our support agent can help.', 'high', 'remote-access'],
+ ['Click the link to verify your bank account now.', 'review', 'account-link'],
  ['Pay a redelivery fee at https://example.test/pay.', 'review', 'delivery-fee'],
  ['Your package requires a payment of $2.99.', 'review', 'delivery-fee'],
  ['Buy gift cards and send them to me.', 'review', 'gift-card'],
@@ -20,6 +22,8 @@ const scenarios = [
  ['We will never ask you to share your OTP.', 'unknown', null],
  ['Do not move your money to a safe account.', 'unknown', null],
  ['Your order shipped. Track at https://example.test/track.', 'unknown', null],
+ ['Your account was verified yesterday. No action is needed.', 'unknown', null],
+ ['Visit https://192.0.2.44/verify to read the notice.', 'review', 'suspicious-link-structure'],
  ['Remember to buy milk on the way home.', 'unknown', null]
 ];
 for(const [text,level,id] of scenarios) test(text,()=>{
