@@ -1,0 +1,4 @@
+import {readFile,writeFile} from 'node:fs/promises';import{analyze}from'../dist/engine.js';
+const cases=JSON.parse(await readFile(new URL('../tests/evaluation-cases.json',import.meta.url)));const results=cases.map(c=>({...c,result:analyze(c.text)}));
+const counts={total:results.length,scams:0,flaggedScams:0,missedScams:0,legitimate:0,falseAlarms:0,ambiguous:0};for(const c of results){if(c.label==='ambiguous'){counts.ambiguous++;continue}const flag=c.result.level!=='unknown';if(c.label==='scam'){counts.scams++;flag?counts.flaggedScams++:counts.missedScams++}else{counts.legitimate++;if(flag)counts.falseAlarms++;}}
+await writeFile(new URL('../docs/evaluation-results.json',import.meta.url),JSON.stringify({notice:'Independent synthetic development check, not real-world accuracy. No tuning after evaluation.',counts,results},null,2));console.log(counts);
