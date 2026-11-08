@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="PausePoint helps you understand suspicious messages and choose a safer next step. A HackUTD 2026 prototype.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>PausePoint — A safer next step</title>
+  <link rel="icon" href="./favicon.svg">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="header">
+    <div class="header-inner">
+      <a class="brand" href="#check" aria-label="PausePoint home"><span class="brandmark" aria-hidden="true">Ⅱ</span>PausePoint<span class="beta">PROTOTYPE</span></a>
+      <nav aria-label="Main navigation">
+        <button class="nav active" data-page="check" aria-current="page">Check a message</button>
+        <button class="nav" data-page="recovery">Recovery plan</button>
+        <button class="nav" data-page="lab">Test Lab</button>
+      </nav>
+      <span class="private-pill"><span class="dot" aria-hidden="true"></span>On-device analysis</span>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section id="page-check" class="page" aria-labelledby="check-title">
+      <div class="hero">
+        <div>
+          <p class="eyebrow">PAUSE. VERIFY. TAKE THE NEXT STEP.</p>
+          <h1 id="check-title" tabindex="-1">A moment of pause.<br><span>A safer next step.</span></h1>
+          <p class="lead">Understand a suspicious message before you act.</p>
+        </div>
+        <p class="hero-note"><span class="privacy-icon" aria-hidden="true">Ⅱ</span><span>Your message stays in your browser.<br><strong>No account. No message uploads.</strong></span></p>
+      </div>
+
+      <ol class="journey" aria-label="Your next steps">
+        <li id="journey-message" aria-current="step"><span class="journey-number">1</span>Choose or paste</li>
+        <li id="journey-understand"><span class="journey-number">2</span>Understand the signs</li>
+        <li id="journey-act"><span class="journey-number">3</span>Verify or recover</li>
+      </ol>
+
+      <div class="workspace">
+        <section class="card compose" aria-labelledby="compose-title">
+          <div class="card-heading"><p class="step-label"><span>01</span> THE MESSAGE</p><button id="clear" class="text-button" type="button">Clear all</button></div>
+          <h2 id="compose-title">What made you pause?</h2>
+          <p class="section-description">Choose an example or paste your own message.</p>
+          <div class="samples" role="group" aria-label="Synthetic example messages">
+            <button data-sample="bank" aria-pressed="false">Bank impersonation <span aria-hidden="true">↗</span></button>
+            <button data-sample="delivery" aria-pressed="false">Delivery fee <span aria-hidden="true">↗</span></button>
+            <button data-sample="code" aria-pressed="false">Code theft <span aria-hidden="true">↗</span></button>
+            <button data-sample="normal" aria-pressed="false">Routine reminder <span aria-hidden="true">↗</span></button>
+          </div>
+          <form id="message-form">
+            <div class="label-row"><label for="message">Message to check</label><span id="sample-note">Examples are synthetic</span></div>
+            <textarea id="message" maxlength="5000" placeholder="Paste the message here…" spellcheck="false" autocomplete="off" aria-describedby="message-help count input-error"></textarea>
+            <div class="input-meta"><span id="message-help">Pasted links stay inactive.</span><span id="count">0 / 5,000</span></div>
+            <p id="input-error" class="inline-error" role="alert" hidden></p>
+            <button id="analyze" class="primary" type="submit" disabled>Find warning signs <span aria-hidden="true">→</span></button>
+            <p id="input-status" class="input-status">Add a message to begin. <span class="shortcut">⌘ / Ctrl + Enter to analyze</span></p>
+          </form>
+          <p class="fineprint">This prototype checks written cues. It cannot verify a sender or guarantee that a message is safe.</p>
+        </section>
+
+        <section class="card result" id="result" aria-label="Message analysis">
+          <p class="step-label"><span>02</span> UNDERSTAND & ACT</p>
+          <div class="empty-result">
+            <div class="shield" aria-hidden="true"><svg viewBox="0 0 100 110"><path d="M50 8 85 23v28c0 24-18 42-35 51C33 93 15 75 15 51V23Z"/><path d="M40 40v28m20-28v28"/></svg></div>
+            <h2>A clearer view.<br>A practical next step.</h2>
+            <p>Your analysis will appear here. You’ll see what stands out and how to check the request independently.</p>
+          </div>
+          <div class="preview-guide"><span aria-hidden="true">↳</span><p><strong>Start with a sample</strong> to explore without using a personal message.</p></div>
+        </section>
+      </div>
+
+      <section class="recovery-banner" aria-labelledby="recovery-prompt">
+        <div class="banner-icon" aria-hidden="true">↶</div>
+        <div><h2 id="recovery-prompt">Already clicked or shared something?</h2><p>Take a breath. Work through what to do next.</p></div>
+        <button class="secondary" id="open-recovery">Make a recovery plan <span aria-hidden="true">→</span></button>
+      </section>
+      <div class="principles">
+        <div><h3>Private by design</h3><p>Local analysis. No message history, tracking scripts, or external AI calls.</p></div>
+        <div><h3>Reasons you can see</h3><p>The exact wording behind a warning, without invented confidence scores.</p></div>
+        <div><h3>Action over alarm</h3><p>Independent verification and practical steps to help you move forward.</p></div>
+      </div>
+    </section>
+
+    <section id="page-recovery" class="page" aria-labelledby="recovery-title" hidden>
+      <div class="section-intro"><p class="eyebrow">ONE STEP AT A TIME</p><h1 id="recovery-title" tabindex="-1">You have a next step.</h1><p class="lead">Choose what happened. Start with the first step in your plan.</p></div>
+      <div class="recovery-layout">
+        <section class="card situation" aria-labelledby="situation-title"><p class="step-label"><span>01</span> YOUR SITUATION</p><h2 id="situation-title">Where are you right now?</h2><p class="muted">Choose the closest situation. If more than one applies, review each relevant plan.</p><div id="recovery-choices" class="choices" role="group" aria-label="Recovery situations"></div><p class="fineprint">General U.S. consumer guidance. No accounts are accessed or changed by this app.</p></section>
+        <section class="card recovery-detail" id="recovery-detail" aria-label="Your recovery action plan"></section>
+      </div>
+    </section>
+
+    <section id="page-lab" class="page" aria-labelledby="lab-title" hidden>
+      <div class="section-intro"><p class="eyebrow">SHOW THE WORK</p><h1 id="lab-title" tabindex="-1">Honest about the limits.</h1><p class="lead">Compare detector versions on transparent synthetic examples.</p></div>
+      <div class="lab-notice"><strong>This is a small development check, not a real-world accuracy claim.</strong><p>The original 30 cases now form a regression set: their failures informed v2. Another 24 cases were written before the v2 changes by the same AI-assisted author; they are not an independent benchmark. Neither set is T-Mobile’s dataset.</p></div>
+      <div class="lab-controls"><div><label for="evaluation-set">Choose test set</label><select id="evaluation-set"><option value="original">Original 30 — regression set</option><option value="fresh">Additional 24 — prospective development set</option></select></div><button class="primary lab-run" id="run-lab">Run selected test set <span aria-hidden="true">→</span></button></div>
+      <p class="legend">Original v1 baseline: 9/16 scams flagged; 1/10 legitimate messages flagged. V2 expands coverage; review-level warnings are not definitive scam verdicts.</p>
+      <p id="lab-status" class="lab-status" role="status">Choose a set and run it to inspect each result.</p>
+      <div id="lab-results"></div>
+      <section class="card methods"><h2>What’s behind the result?</h2><p>PausePoint uses explainable, deterministic rules primarily for English message text, plus limited Spanish transfer and code-request patterns. Strong cues can raise a warning; weaker cues invite independent verification. No warning means “uncertain,” never “safe.”</p><p>It cannot authenticate senders, inspect websites, detect every scam, or understand every language and context. Obfuscation and subtle social engineering may evade it. T-Mobile’s supplied classifier and dataset have not been integrated because the files are not yet available.</p></section>
+    </section>
+  </main>
+
+  <footer><div class="footer-inner"><a class="brand small" href="#check"><span class="brandmark" aria-hidden="true">Ⅱ</span>PausePoint</a><span class="footer-event">HackUTD 2026 · T-Mobile Track</span><button id="about-button" class="text-button">Privacy & limitations</button><a href="https://github.com/PaswanRaju/pausepoint" target="_blank" rel="noopener noreferrer">GitHub project ↗</a></div></footer>
+  <dialog id="about-dialog" aria-labelledby="about-title"><button class="close" id="close-dialog" aria-label="Close privacy and limitations">×</button><p class="eyebrow">TRANSPARENCY FIRST</p><h2 id="about-title">Your words stay here.</h2><p>Message analysis happens in this browser using rules. Message text is not sent to a server, stored in browser storage, or included in downloaded plans. “Clear all” removes it from the app’s current view.</p><p>The hosting service may receive standard page-request metadata. Following an external resource opens a different site with its own privacy policy.</p><h3>A prototype with boundaries</h3><p>This app does not authenticate a sender, block messages, submit reports, or contact anyone for you. It can miss scams and flag legitimate text. Guidance is general and based on linked U.S. consumer resources.</p><p>No sponsor affiliation or endorsement is implied. AI coding assistance was used to develop this project; no generative AI runs during analysis.</p></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
