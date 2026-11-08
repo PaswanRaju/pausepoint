@@ -1,0 +1,673 @@
+{
+  "notice": "Synthetic development results, not real-world accuracy. Original cases informed v2; fresh cases authored by the same AI-assisted author before v2 edits, not independent.",
+  "counts": {
+    "total": 24,
+    "scams": 12,
+    "flaggedScams": 12,
+    "missedScams": 0,
+    "legitimate": 10,
+    "falseAlarms": 0,
+    "ambiguous": 2
+  },
+  "results": [
+    {
+      "id": "f01",
+      "text": "Fraud desk here. Relocate your savings to a protected reserve account while we investigate.",
+      "label": "scam",
+      "reason": "Transfer under a protection pretext.",
+      "result": {
+        "level": "high",
+        "category": "Bank impersonation pattern",
+        "summary": "Pause before taking action. This message contains a request that could expose your money, account, or device.",
+        "signals": [
+          {
+            "id": "safe-account",
+            "label": "“Safe account” money-transfer request",
+            "explanation": "A request to move money to a supposedly safe account is a serious warning sign. Verify directly with your bank before taking any action.",
+            "start": 17,
+            "end": 69
+          }
+        ],
+        "nextSteps": [
+          "Do not make the requested transfer while the request is unverified.",
+          "Contact your bank through its official app or the number printed on your card.",
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f02",
+      "text": "Please photograph the authentication code on your screen and forward the picture to our agent.",
+      "label": "scam",
+      "reason": "Image-based secret disclosure.",
+      "result": {
+        "level": "high",
+        "category": "Credential or verification-code theft pattern",
+        "summary": "Pause before taking action. This message contains a request that could expose your money, account, or device.",
+        "signals": [
+          {
+            "id": "secret-request",
+            "label": "Request for a password or security code",
+            "explanation": "This wording asks for an account secret. Someone who obtains a security code or password may be able to access your account. Context matters; an expected login you initiated is different from an unsolicited request.",
+            "start": 7,
+            "end": 41
+          }
+        ],
+        "nextSteps": [
+          "Do not send passwords, one-time codes, or recovery phrases to the person who contacted you.",
+          "If you initiated a login, return to the official app or site independently to check what it requires.",
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f03",
+      "text": "A shipment is waiting. Submit your credit card number to pay the address adjustment cost.",
+      "label": "scam",
+      "reason": "Delivery correction fee.",
+      "result": {
+        "level": "review",
+        "category": "Payment information request",
+        "summary": "This message contains wording worth checking. Verify the request independently before acting.",
+        "signals": [
+          {
+            "id": "payment-details",
+            "label": "Request for payment-card information",
+            "explanation": "This requests payment information. A real checkout can do this too; independently verify the organization and the reason before providing details.",
+            "start": 23,
+            "end": 53
+          }
+        ],
+        "nextSteps": [
+          "Open the merchant or carrier app independently and verify the charge before entering card details.",
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f04",
+      "text": "You won a cash reward! Send a handling fee first to receive the prize.",
+      "label": "scam",
+      "reason": "Advance-fee reward.",
+      "result": {
+        "level": "high",
+        "category": "Advance-fee pattern",
+        "summary": "Pause before taking action. This message contains a request that could expose your money, account, or device.",
+        "signals": [
+          {
+            "id": "advance-fee",
+            "label": "Payment to unlock a prize or reward",
+            "explanation": "Paying first to collect a promised prize or reward is a strong scam warning sign. Do not send money based on the promise.",
+            "start": 23,
+            "end": 69
+          }
+        ],
+        "nextSteps": [
+          "Do not pay to unlock a promised prize. Verify the supposed promotion independently.",
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f05",
+      "text": "Please remit the next invoice to our new bank account. The banking details have changed.",
+      "label": "scam",
+      "reason": "Authored as vendor payment diversion; content requires verification, not a conclusive verdict.",
+      "result": {
+        "level": "review",
+        "category": "Payment-diversion verification needed",
+        "summary": "This message contains wording worth checking. Verify the request independently before acting.",
+        "signals": [
+          {
+            "id": "changed-payment",
+            "label": "Changed payment destination",
+            "explanation": "Changed payment details can be legitimate or a sign of invoice diversion. Text alone cannot resolve this. Confirm the change with your established contact before paying.",
+            "start": 37,
+            "end": 53
+          },
+          {
+            "id": "changed-payment",
+            "label": "Changed payment destination",
+            "explanation": "Changed payment details can be legitimate or a sign of invoice diversion. Text alone cannot resolve this. Confirm the change with your established contact before paying.",
+            "start": 59,
+            "end": 87
+          }
+        ],
+        "nextSteps": [
+          "Call your established contact using contact details from before the change. Confirm the payment destination independently.",
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f06",
+      "text": "Sеnd your passw0rd to the help desk.",
+      "label": "scam",
+      "reason": "Cyrillic character and leetspeak.",
+      "result": {
+        "level": "high",
+        "category": "Credential or verification-code theft pattern",
+        "summary": "Pause before taking action. This message contains a request that could expose your money, account, or device.",
+        "signals": [
+          {
+            "id": "secret-request",
+            "label": "Request for a password or security code",
+            "explanation": "This wording asks for an account secret. Someone who obtains a security code or password may be able to access your account. Context matters; an expected login you initiated is different from an unsolicited request.",
+            "start": 0,
+            "end": 18
+          }
+        ],
+        "nextSteps": [
+          "Do not send passwords, one-time codes, or recovery phrases to the person who contacted you.",
+          "If you initiated a login, return to the official app or site independently to check what it requires.",
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f07",
+      "text": "Please sh​are your pass​word with the technician.",
+      "label": "scam",
+      "reason": "Invisible Unicode splits.",
+      "result": {
+        "level": "high",
+        "category": "Credential or verification-code theft pattern",
+        "summary": "Pause before taking action. This message contains a request that could expose your money, account, or device.",
+        "signals": [
+          {
+            "id": "secret-request",
+            "label": "Request for a password or security code",
+            "explanation": "This wording asks for an account secret. Someone who obtains a security code or password may be able to access your account. Context matters; an expected login you initiated is different from an unsolicited request.",
+            "start": 7,
+            "end": 28
+          }
+        ],
+        "nextSteps": [
+          "Do not send passwords, one-time codes, or recovery phrases to the person who contacted you.",
+          "If you initiated a login, return to the official app or site independently to check what it requires.",
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f08",
+      "text": "Envíame el código de seguridad para recuperar tu cuenta.",
+      "label": "scam",
+      "reason": "Limited Spanish credential request.",
+      "result": {
+        "level": "high",
+        "category": "Credential disclosure pattern",
+        "summary": "Pause before taking action. This message contains a request that could expose your money, account, or device.",
+        "signals": [
+          {
+            "id": "spanish-secret",
+            "label": "Request for a security code (Spanish cue)",
+            "explanation": "This Spanish wording appears to ask for a password or verification code. Limited language rules can miss context; verify independently.",
+            "start": 0,
+            "end": 30
+          }
+        ],
+        "nextSteps": [
+          "Do not send an authentication code or password to the sender. Use the official account app independently.",
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f09",
+      "text": "Transfiere tus ahorros a una cuenta protegida.",
+      "label": "scam",
+      "reason": "Limited Spanish protected-account transfer.",
+      "result": {
+        "level": "high",
+        "category": "Bank impersonation pattern",
+        "summary": "Pause before taking action. This message contains a request that could expose your money, account, or device.",
+        "signals": [
+          {
+            "id": "spanish-transfer",
+            "label": "Protected-account transfer (Spanish cue)",
+            "explanation": "This Spanish wording requests a transfer into a supposedly safe account. Verify directly with your bank; limited language rules cannot establish intent.",
+            "start": 0,
+            "end": 45
+          }
+        ],
+        "nextSteps": [
+          "Do not transfer funds based on the message. Contact your bank using its existing app or the number on your card.",
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f10",
+      "text": "Never share your password. However, send me your login code for this check.",
+      "label": "scam",
+      "reason": "Warning prefix must not suppress later request.",
+      "result": {
+        "level": "high",
+        "category": "Credential or verification-code theft pattern",
+        "summary": "Pause before taking action. This message contains a request that could expose your money, account, or device.",
+        "signals": [
+          {
+            "id": "secret-request",
+            "label": "Request for a password or security code",
+            "explanation": "This wording asks for an account secret. Someone who obtains a security code or password may be able to access your account. Context matters; an expected login you initiated is different from an unsolicited request.",
+            "start": 36,
+            "end": 59
+          }
+        ],
+        "nextSteps": [
+          "Do not send passwords, one-time codes, or recovery phrases to the person who contacted you.",
+          "If you initiated a login, return to the official app or site independently to check what it requires.",
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f11",
+      "text": "Our training says 'never share your code'. Now send your OTP to the agent.",
+      "label": "scam",
+      "reason": "Educational quote followed by actual demand.",
+      "result": {
+        "level": "high",
+        "category": "Credential or verification-code theft pattern",
+        "summary": "Pause before taking action. This message contains a request that could expose your money, account, or device.",
+        "signals": [
+          {
+            "id": "secret-request",
+            "label": "Request for a password or security code",
+            "explanation": "This wording asks for an account secret. Someone who obtains a security code or password may be able to access your account. Context matters; an expected login you initiated is different from an unsolicited request.",
+            "start": 47,
+            "end": 60
+          }
+        ],
+        "nextSteps": [
+          "Do not send passwords, one-time codes, or recovery phrases to the person who contacted you.",
+          "If you initiated a login, return to the official app or site independently to check what it requires.",
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f12",
+      "text": "Bank support: transfer your funds to our secure wallet. Keep this secret from your branch.",
+      "label": "scam",
+      "reason": "Wallet destination under bank-security pretext.",
+      "result": {
+        "level": "high",
+        "category": "Bank impersonation pattern",
+        "summary": "Pause before taking action. This message contains a request that could expose your money, account, or device.",
+        "signals": [
+          {
+            "id": "safe-account",
+            "label": "“Safe account” money-transfer request",
+            "explanation": "A request to move money to a supposedly safe account is a serious warning sign. Verify directly with your bank before taking any action.",
+            "start": 14,
+            "end": 54
+          }
+        ],
+        "nextSteps": [
+          "Do not make the requested transfer while the request is unverified.",
+          "Contact your bank through its official app or the number printed on your card.",
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f13",
+      "text": "Security lesson: scammers may say 'buy gift cards and send the codes'. Do not comply.",
+      "label": "legitimate",
+      "reason": "Bounded educational quote.",
+      "result": {
+        "level": "unknown",
+        "category": "No recognized pattern",
+        "summary": "No warning pattern was recognized by these limited rules. This does not verify the sender or establish that the message is safe.",
+        "signals": [],
+        "nextSteps": [
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f14",
+      "text": "Do not screenshot your login code or send it to anyone.",
+      "label": "legitimate",
+      "reason": "Negated secret-sharing action.",
+      "result": {
+        "level": "unknown",
+        "category": "No recognized pattern",
+        "summary": "No warning pattern was recognized by these limited rules. This does not verify the sender or establish that the message is safe.",
+        "signals": [],
+        "nextSteps": [
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f15",
+      "text": "Never transfer funds into a protected account on a caller's instructions.",
+      "label": "legitimate",
+      "reason": "Protective advice.",
+      "result": {
+        "level": "unknown",
+        "category": "No recognized pattern",
+        "summary": "No warning pattern was recognized by these limited rules. This does not verify the sender or establish that the message is safe.",
+        "signals": [],
+        "nextSteps": [
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f16",
+      "text": "The bank says it will never ask for your password.",
+      "label": "legitimate",
+      "reason": "No actual request.",
+      "result": {
+        "level": "unknown",
+        "category": "No recognized pattern",
+        "summary": "No warning pattern was recognized by these limited rules. This does not verify the sender or establish that the message is safe.",
+        "signals": [],
+        "nextSteps": [
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f17",
+      "text": "Your shipment is delivered. No fee is due.",
+      "label": "legitimate",
+      "reason": "Delivery notification, no requested payment.",
+      "result": {
+        "level": "unknown",
+        "category": "No recognized pattern",
+        "summary": "No warning pattern was recognized by these limited rules. This does not verify the sender or establish that the message is safe.",
+        "signals": [],
+        "nextSteps": [
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f18",
+      "text": "I bought a gift card for my sister's birthday.",
+      "label": "legitimate",
+      "reason": "Ordinary purchase statement.",
+      "result": {
+        "level": "unknown",
+        "category": "No recognized pattern",
+        "summary": "No warning pattern was recognized by these limited rules. This does not verify the sender or establish that the message is safe.",
+        "signals": [],
+        "nextSteps": [
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f19",
+      "text": "Your prize is ready to collect. No payment is needed.",
+      "label": "legitimate",
+      "reason": "No advance payment request.",
+      "result": {
+        "level": "unknown",
+        "category": "No recognized pattern",
+        "summary": "No warning pattern was recognized by these limited rules. This does not verify the sender or establish that the message is safe.",
+        "signals": [],
+        "nextSteps": [
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f20",
+      "text": "No compartas tu código de seguridad con nadie.",
+      "label": "legitimate",
+      "reason": "Spanish protective advice.",
+      "result": {
+        "level": "unknown",
+        "category": "No recognized pattern",
+        "summary": "No warning pattern was recognized by these limited rules. This does not verify the sender or establish that the message is safe.",
+        "signals": [],
+        "nextSteps": [
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f21",
+      "text": "Here is the agenda: https://meeting.example/agenda. See you Monday.",
+      "label": "legitimate",
+      "reason": "Link alone is insufficient.",
+      "result": {
+        "level": "unknown",
+        "category": "No recognized pattern",
+        "summary": "No warning pattern was recognized by these limited rules. This does not verify the sender or establish that the message is safe.",
+        "signals": [],
+        "nextSteps": [
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f22",
+      "text": "Our article explains why a 'secure reserve account' demand is suspicious.",
+      "label": "legitimate",
+      "reason": "No transfer request.",
+      "result": {
+        "level": "unknown",
+        "category": "No recognized pattern",
+        "summary": "No warning pattern was recognized by these limited rules. This does not verify the sender or establish that the message is safe.",
+        "signals": [],
+        "nextSteps": [
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f23",
+      "text": "Can you send the reference number for our booking?",
+      "label": "ambiguous",
+      "reason": "Reference may not be an authentication secret.",
+      "result": {
+        "level": "unknown",
+        "category": "No recognized pattern",
+        "summary": "No warning pattern was recognized by these limited rules. This does not verify the sender or establish that the message is safe.",
+        "signals": [],
+        "nextSteps": [
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    },
+    {
+      "id": "f24",
+      "text": "Your invoice contains updated bank information. Please confirm this directly with our usual contact before paying.",
+      "label": "ambiguous",
+      "reason": "Could be legitimate; independent verification remains reasonable.",
+      "result": {
+        "level": "review",
+        "category": "Payment-diversion verification needed",
+        "summary": "This message contains wording worth checking. Verify the request independently before acting.",
+        "signals": [
+          {
+            "id": "changed-payment",
+            "label": "Changed payment destination",
+            "explanation": "Changed payment details can be legitimate or a sign of invoice diversion. Text alone cannot resolve this. Confirm the change with your established contact before paying.",
+            "start": 22,
+            "end": 46
+          }
+        ],
+        "nextSteps": [
+          "Call your established contact using contact details from before the change. Confirm the payment destination independently.",
+          "Pause before replying, paying, or sharing information.",
+          "Open the organization’s official app yourself, or use contact details you independently know are genuine. Do not rely on a link or number in this message.",
+          "If the request is unexpected, ask the organization to confirm it through that separate channel."
+        ],
+        "limitations": [
+          "This is a rule-based prototype, not a trained classifier. Risk level describes the detected request, not certainty that the sender is fraudulent.",
+          "It cannot authenticate senders, inspect destinations, verify account activity, or detect every scam. A message with no detected cues is not verified safe.",
+          "Rules primarily cover English, with limited Spanish transfer/code patterns and common text obfuscation. This is not full multilingual support; sarcasm, quotations, other languages, and unfamiliar wording remain limitations."
+        ]
+      }
+    }
+  ]
+}

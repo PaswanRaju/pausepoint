@@ -2,7 +2,7 @@
 
 ## Purpose and provenance
 
-`tests/evaluation-cases.json` contains 30 manually authored synthetic messages: 16 scam scenarios, 10 legitimate scenarios, and 4 ambiguous scenarios. They were written independently of the detection engine; the dataset author did not inspect or run the engine while selecting examples. No messages are real customer data. Names, codes, amounts, and `.example` URLs are fictitious.
+`tests/evaluation-cases.json` contains 30 AI-assisted synthetic messages: 16 scam scenarios, 10 legitimate scenarios, and 4 ambiguous scenarios. They were written independently of the detection engine; the dataset author did not inspect or run the engine while selecting examples. No messages are real customer data. Names, codes, amounts, and `.example` URLs are fictitious.
 
 These are development challenge cases, not a representative sample of real messages, an externally validated benchmark, or a substitute for testing on the sponsor's supplied dataset. Independence here means authoring without inspecting the engine, not a statistically independent or permanently held-out test set. Once results inform engine changes, describe this set as a regression/development suite.
 
@@ -36,4 +36,4 @@ State denominators. If reporting precision or recall, calculate them from explic
 
 ## Results
 
-Pending integration and execution. Do not claim a score until the evaluation runner has executed against the actual shipped engine.
+V1 baseline is preserved in evaluation-baseline-v1.json and tests/baseline-engine-v1.js. V2 original results: 16/16 scams flagged, 0/10 legitimate cases flagged, 4 ambiguous unscored. The original set now informs implementation and is a regression set. The additional 24 cases were authored before v2 edits by the same AI-assisted author: 12/12 scams flagged, 0/10 legitimate flagged, 2 ambiguous unscored. It is prospective development coverage, not independent validation. All high/review outputs count as flagged; payment-detail changes remain review-level only. See evaluation-results.json and evaluation-fresh-v2.json.

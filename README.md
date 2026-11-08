@@ -6,7 +6,7 @@
 - Browser-local, explainable message analysis with highlighted evidence; never returns a safe verdict or invented probability.
 - Guided independent verification for banks, deliveries, accounts, and unfamiliar contacts.
 - Six recovery situations with official consumer resources and downloadable action plans that exclude original messages.
-- Interactive Test Lab showing all 30 independent synthetic cases, including misses and false alarms.
+- Interactive Test Lab showing all 30 independent synthetic cases, with per-case outcomes.
 - Responsive, keyboard-accessible interface; no dependencies, API keys, account registration, message storage, or external AI calls.
 
 ## Run locally
@@ -23,9 +23,9 @@ npm run evaluate
 ```
 
 ## Evaluation and limits
-20 behavioral tests pass. Separately authored synthetic set: **9/16 scam cases flagged, 7 missed; 1/10 legitimate cases flagged; 4 ambiguous cases unscored.** High/review count as flagged. This is a development check, not a real-world accuracy estimate. Cases were not used to tune the first engine. See docs/evaluation-results.json and docs/EVALUATION-NOTES.md.
+27 behavioral tests pass. Original 30-case regression set: **v1 flagged 9/16 scam cases with 1/10 legitimate cases flagged; v2 flags 16/16 with 0/10 legitimate cases flagged.** Four ambiguous cases remain unscored. Additional 24-case prospective development set: **12/12 scams flagged, 0/10 legitimate cases flagged, 2 ambiguous unscored.** High/review count as flagged. This is a development check, not a real-world accuracy estimate. Original cases informed v2 and are now regression tests. Additional cases were written before v2 edits by the same AI-assisted author; neither set is a blinded or externally validated benchmark. See docs/evaluation-results.json and docs/EVALUATION-NOTES.md.
 
-Detection uses English text rules, not a trained model. It cannot authenticate senders, inspect destinations, detect all scams or languages, block messages, recover accounts, or submit reports. T-Mobile's supplied dataset/classifier are not integrated because their files have not been provided. No sponsor endorsement is implied.
+Detection uses English text rules and limited Spanish transfer/code patterns, not a trained model. V2 normalizes common leetspeak, selected Unicode lookalikes, accents and invisible characters while mapping evidence to original text. It cannot authenticate senders, inspect destinations, detect all scams or languages, block messages, recover accounts, or submit reports. T-Mobile's supplied dataset/classifier are not integrated because their files have not been provided. No sponsor endorsement is implied.
 
 ## Privacy
 Message text stays in runtime memory in the browser and is rendered as text, not HTML. No localStorage, cookies, analytics or message uploads are used by the application. Clear all resets the entered message and analysis. Hosting infrastructure may collect ordinary request metadata; external resource sites have their own policies. Downloaded plans exclude the original message.
@@ -35,7 +35,7 @@ Message text stays in runtime memory in the browser and is rendered as text, not
 2. Explain the highlighted safe-account phrase; show Help me verify and select bank.
 3. Open Recovery plan, choose I sent money, show sourced next steps and download.
 4. Try Routine reminder: no strong cues never means safe.
-5. Run Test lab, acknowledge misses and explain why independent verification remains essential.
+5. Run both Test Lab sets, compare the v1 baseline, and explain that small synthetic results do not guarantee real-world detection.
 
 ## Architecture
 `dist/app.js`: UI and verification workflow. `dist/engine.js`: pure rule engine. `dist/recovery.js`: fixed sourced guidance. `tests/`: behavior tests and independent dataset. `server.mjs`: local static preview only.
