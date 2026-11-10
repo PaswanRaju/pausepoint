@@ -1,5 +1,7 @@
 # PausePoint
 
+**[Try the live demo](https://paswanraju.github.io/pausepoint/)**
+
 **Pause. Verify. Take the next step.** A solo HackUTD 2026 T-Mobile-track prototype.
 
 ## Working features
